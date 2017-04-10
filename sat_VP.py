@@ -222,12 +222,15 @@ def solution(putnam_result):
 			print(mapping2[output]aw, ':', counter_example[output + nets1])
 	else:
 		print('Equivalent!')
-  
-# read netlists
-inputs1, inputs_numb1, outputs1, outputs_numb1, mapping1, gates1, nets1, mapping_let_numb1 = readNetlist(open(sys.argv[1],"r"))
-inputs2, inputs_numb2, outputs2, outputs_numb2, mapping2, gates2, nets2, mapping_let_numb2 = readNetlist(open(sys.argv[2],"r"))
-counter_example = {}  #dictionary containing the counter example
-miter_gates = miter(nets1, nets2, gates1,gates2, mapping_let_numb1, mapping_let_numb2, mapping1, mapping2,
-	inputs_numb1, inputs_numb2, outputs_numb1) #miter
-cnf = cnf_initial(miter_gates) #initial cnf
-solution(Putnam(cnf))
+def main():   
+	# read netlists
+	inputs1, inputs_numb1, outputs1, outputs_numb1, mapping1, gates1, nets1, mapping_let_numb1 = readNetlist(open(sys.argv[1],"r"))
+	inputs2, inputs_numb2, outputs2, outputs_numb2, mapping2, gates2, nets2, mapping_let_numb2 = readNetlist(open(sys.argv[2],"r"))
+	counter_example = {}  #dictionary containing the counter example
+	miter_gates = miter(nets1, nets2, gates1,gates2, mapping_let_numb1, mapping_let_numb2, mapping1, mapping2,
+		inputs_numb1, inputs_numb2, outputs_numb1) #miter
+	cnf = cnf_initial(miter_gates) #initial cnf
+	solution(Putnam(cnf))
+
+if __name__ == '__main__':
+	main()
